@@ -14,8 +14,8 @@ const output = join(outputDir, 'entry.png');
 const sourceBytes = readFileSync(source);
 const outputBytes = readFileSync(output);
 if (!sourceBytes.equals(outputBytes)) {
-  throw new Error('Written output differs from source image');
+  throw new Error('Output bytes differ from source bytes');
 }
 if (statSync(output).size > 1048576) {
-  throw new Error('Output image exceeds 1048576 bytes');
+  throw new Error('Output file exceeds 1048576 bytes');
 }
