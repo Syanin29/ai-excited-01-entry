@@ -11,9 +11,11 @@ const outputDir = process.env.MAKEFUN_OUTPUT_DIR || '/output';
 mkdirSync(outputDir, { recursive: true });
 copyFileSync(source, join(outputDir, 'entry.png'));
 const output = join(outputDir, 'entry.png');
-if (!readFileSync(output).equals(readFileSync(source))) {
-  throw new Error('Output does not match source bytes');
+const sourceBytes = readFileSync(source);
+const outputBytes = readFileSync(output);
+if (!sourceBytes.equals(outputBytes)) {
+  throw new Error('Written output differs from source image');
 }
 if (statSync(output).size > 1048576) {
-  throw new Error('Output exceeds 1048576 bytes');
+  throw new Error('Output image exceeds 1048576 bytes');
 }
