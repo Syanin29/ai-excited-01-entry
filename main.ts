@@ -12,8 +12,8 @@ mkdirSync(outputDir, { recursive: true });
 copyFileSync(source, join(outputDir, 'entry.png'));
 const output = join(outputDir, 'entry.png');
 if (!readFileSync(output).equals(readFileSync(source))) {
-  throw new Error('Written output does not match source bytes');
+  throw new Error('Output does not match source bytes');
 }
 if (statSync(output).size > 1048576) {
-  throw new Error('Written output exceeds 1048576 bytes');
+  throw new Error('Output exceeds 1048576 bytes');
 }
